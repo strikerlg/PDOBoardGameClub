@@ -9,21 +9,32 @@ if ( !empty($_GET['playerID']))
 	// Get the playerID
 	$playerID = $_REQUEST['playerID'];
 }
-     
-if ( !empty($_POST)) 
+ 
+try 
 {
-	// Get the POST value 
-	$playerID = $_POST['playerID'];
-         
-	// Delete the selected player using their playerID 
-	$pdo = Database::connect();
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$sql = "DELETE FROM players  WHERE playerID = ?";
-	$q = $pdo->prepare($sql);
-	$q->execute(array($playerID));
-	Database::disconnect();
-	header("Location: index.php");         
+	if ( !empty($_POST)) 
+	{
+		// Get the POST value 
+		$playerID = $_POST['playerID'];
+	         
+		// Delete the selected player using their playerID 
+		$pdo = Database::connect();
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = "DELETE FROM players  WHERE playerID = ?";
+		$q = $pdo->prepare($sql);
+		$q->execute(array($playerID));
+		Database::disconnect();
+		header("Location: index.php");         
+	}
 }
+catch (PDOException $Exception)
+{
+	// Using JS to redirect 
+  	echo '<script type="text/javascript">
+    window.location = "integrity.php"
+    </script>';	die();
+} 
+
 
 ?>
 
