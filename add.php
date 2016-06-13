@@ -39,7 +39,7 @@ http://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=10523288
 <!-- Telephone numbers vary between countries, allowing numbers but no set pattern (max length of 16) -->
 
 <tr><td>
-<input type="tel" name="phoneNumber" placeholder="Phone Number" required pattern="[0-9]" maxlength="16"> value="<?php echo $phoneNumber;?>"></input>
+<input type="tel" name="phoneNumber" placeholder="Phone Number" required pattern="[0-9]" maxlength="16" value="<?php echo $phoneNumber;?>"></input>
 <span class="error">* <?php echo $phoneNumberError;?></span>
 </td></tr>
 
